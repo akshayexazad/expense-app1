@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="/style/expense.css" />
+</head>
+
+<body>
+  <!-- <div id="expense"> -->
+    <div><h1>EXPENSE TRACKER</h1></div>
+      <hr>
+    <div id="expense">
+      <div class="left_div">
+    <form class="Shift_left" id="new" onsubmit="expense(event)">
+      <label for="price">PRICE:</label><br>
+      <input type="text" id="price" name="price" placeholder="Enter Price..." required /><br>
+
+      <label for="category">CATEGORY:</label><br>
+      <select name="category" id="category">
+
+        <option value="" hidden>Choose a category</option>
+        <option value="Starter">Starter</option>
+        <option value="lunch">Lunch</option>
+        <option value="chinese">Chinese</option>
+        <option value="Drink">Drink</option>
+
+      </select><br>
+      <label for="description">DESCRIPTION:</label><br>
+      <input type="text" id="description" name="description" placeholder="Enter Description..." required /><br>
+      <button id="button">Submit</button><br>
+    </form><br>
+    <span id="userleader-button"></span>
+    <span id="add-premium"></span>
+    <span id="color-for-error"></span>
+  
+    <button id="rze-pay-btn">Buy Premium</button>
+  <!-- </div> -->
+  <div id="leader"><ul id="leader-board"></ul></div>
+
+  <button onclick="download()" id="downloadexpense" class="Shift_left">Download File</button>
+  <button onclick="downloadfiledata()" id="downloadexpenseAllFile">All Downloaded File</button>
+  
+
+  <form id="form2" class="Shift_left">
+    <p id="msg"></p>
+    Rows per pages <select id="rowPerPage">
+      <option>Row Size</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+
+  </form>
+</div>
+<div class="rigth_div" id="border_color">
+  <div id="list-user">
+    <ul id="listOfUsers"></ul>
+  </div>
+</div>
+</div>
+
+
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <button id="pagination"></button>
+  <ul id="downloadedfile"></ul>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js"></script>
+
+  <script src="/addExpense.js"></script>
+</body>
+
+</html>
