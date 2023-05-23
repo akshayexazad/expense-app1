@@ -79,13 +79,14 @@ app.use('/',(req,res)=>{
    User.hasMany(Download);
    Download.belongsTo(User)
    
-   // sequelize.sync().then(()=>{
-   //  app.listen(3000)
-   // }).catch((err)=>{
-   //    console.log(err)
+   sequelize.sync().then(()=>{
+    app.listen(3000)
+   }).catch((err)=>{
+      console.log(err)
       
-   // })
+   })
    
-   app.listen(3000)
+   
+   // app.listen(3000)
 
 
