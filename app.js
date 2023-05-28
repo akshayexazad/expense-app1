@@ -76,10 +76,16 @@ app.use('/premium',require('./router/premiumFeatureRouter'));
 
 app.use('/password',require('./router/forget_password_route'));
 
-app.use('/',(req,res)=>{
-   res.sendFile(path.join(__dirname,'view/error.html'))
-})
 
+// app.use('/',(req,res)=>{
+//    res.sendFile(path.join(__dirname,''))
+// })
+
+ app.use((req,res)=>{
+   console.log('urll',req.url)
+   res.sendFile(path.join(__dirname,`view/${req.url}`))
+ })
+   
 
    User.hasMany(Expense);
 
