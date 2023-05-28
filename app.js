@@ -2,6 +2,7 @@ const express = require('express');
 
 const cors = require('cors');
 
+
 const fs = require('fs')
 
 const helmet  = require('helmet');
@@ -28,7 +29,6 @@ const Forgotpassword = require('./model/forgotpassword')
 const Download = require('./model/downloaddetail')
 
 const sequelize = require('./model/database');
-const { Stream } = require('stream');
 
 const accesLogStream = fs.createWriteStream(path.join(__dirname,'access.log'),{flags:'a'})
 
@@ -36,17 +36,35 @@ const app = express();
 
 app.use(cors())
 
-app.use(helmet())
+// app.use(helmet())
 
 app.use(morgan('combined',{stream:accesLogStream}))
-app.use(express.static('view'))
+// app.use(express.static('view'))
 
 app.use(bodyparser.json())
 
 app.use(bodyparser.urlencoded({extended:true}));
 
 
-
+// app.use(
+//    helmet.contentSecurityPolicy({
+//      directives: {
+//        defaultSrc: ["'self'", 'data:', 'blob:'],
+  
+//        fontSrc: ["'self'", 'https:', 'data:'],
+ 
+//        scriptSrc: ["'self'", 'unsafe-inline'],
+  
+//        scriptSrc: ["'self'", 'https://*.cloudflare.com'],
+  
+//        scriptSrcElem: ["'self'",'https:', 'https://*.cloudflare.com'],
+  
+//        styleSrc: ["'self'", 'https:', 'unsafe-inline'],
+  
+//        connectSrc: ["'self'", 'data', 'https://*.cloudflare.com']
+//      },
+//    })
+//  );
 
 app.use('/user',require('./router/userRoutes'));
 
@@ -78,15 +96,19 @@ app.use('/',(req,res)=>{
 
    User.hasMany(Download);
    Download.belongsTo(User)
+
+
+
    
-   sequelize.sync().then(()=>{
-    app.listen(3000)
-   }).catch((err)=>{
-      console.log(err)
+   // sequelize.sync().then(()=>{
+   //  app.listen(3000)
+   // }).catch((err)=>{
+   //    console.log(err)
       
+   // })
+   app.listen(3000,()=>{
+      console.log('app running on 3000')
    })
-   
-   
-   // app.listen(3000)
+
 
 

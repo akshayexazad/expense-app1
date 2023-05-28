@@ -10,10 +10,10 @@ function submitForm(event){
         password
     }
 
-    axios.post('http://localhost:3000/user/sign-up',obj)
+    axios.post('http://65.2.9.206:3000/user/sign-up',obj)
     .then((res)=>{
       alert('click to sign-in')
-      window.location = "http://localhost:3000/user/sign-in";
+      window.location.href = "./signin.html";
     })
     .catch((err)=>{
       document.body.innerHTML = document.body.innerHTML + "<h4> Something went wrong </h4>"

@@ -57,7 +57,7 @@ const forgotpassword = async (req, res) => {
                     subject: "Password reset link",
                     textContent: `Please use this link for changing your password `,
                     htmlContent: `<h3>Reset Your Password</h3>
-                                <a href="http://localhost:3000/password/resetpassword/${id}">Click here </a>                     `,
+                                <a href="http://65.2.9.206:3000/password/resetpassword/${id}">Click here </a>                     `,
                 })
                 .then(() => {
                     res.status(202).json({
@@ -116,7 +116,7 @@ const resetpassword = (req, res) => {
                     if (password) {
 
                         console.log('password hai')
-                   const response =   await axios.post("http://localhost:3000/password/updatepassword/${id}",newpassword);
+                   const response =   await axios.post("http://65.2.9.206:3000/password/updatepassword/${id}",newpassword);
                        alert(response.data.message);
                       window.location.replace("https://google.com");
                     }

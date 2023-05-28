@@ -1,5 +1,6 @@
 function submitForm(event){
     event.preventDefault()
+    alert('aksjhay')
     let email = event.target.email.value;
     let password = event.target.password.value;
 
@@ -8,7 +9,7 @@ function submitForm(event){
         password
     }
 
-    axios.post('http://localhost:3000/user/sign-in',obj)
+    axios.post('http://65.2.9.206:3000/user/sign-in',obj)
     .then((res)=>{
       console.log(res)
       localStorage.setItem('token',res.data.token)
@@ -25,7 +26,7 @@ function submitForm(event){
           document.getElementById("myList").appendChild(node);
 
           alert('click to Login')
-          window.location = "http://localhost:3000/expense";
+          window.location = "./addExpense.html";
         }
     
     })
