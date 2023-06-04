@@ -10,7 +10,7 @@ function submitForm(event){
         password
     }
 
-    axios.post('http://65.2.9.206:3000/user/sign-up',obj)
+    axios.post('http://52.66.204.112:3000/user/sign-up',obj)
     .then((res)=>{
       alert('click to sign-in')
       window.location.href = "./signin.html";

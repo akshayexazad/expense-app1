@@ -1,6 +1,5 @@
 function submitForm(event){
     event.preventDefault()
-    alert('aksjhay')
     let email = event.target.email.value;
     let password = event.target.password.value;
 
@@ -9,9 +8,10 @@ function submitForm(event){
         password
     }
 
-    axios.post('http://65.2.9.206:3000/user/sign-in',obj)
+    axios.post('http://52.66.204.112:3000/user/sign-in',obj)
     .then((res)=>{
-      console.log(res)
+      // console.log('hello')
+      // console.log(res)
       localStorage.setItem('token',res.data.token)
         if(res.data.newuser===null){
             const node = document.createElement("li");

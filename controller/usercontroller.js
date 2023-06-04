@@ -54,7 +54,7 @@ function generateToken(id,name,ispremiumuser){
 
 const signinPost =async(req,res)=>{
     
-    
+    console.log('akshay')
 
     try {
         const {email,password}= req.body;

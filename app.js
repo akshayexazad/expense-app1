@@ -82,7 +82,6 @@ app.use('/password',require('./router/forget_password_route'));
 // })
 
  app.use((req,res)=>{
-   console.log('urll',req.url)
    res.sendFile(path.join(__dirname,`view/${req.url}`))
  })
    
