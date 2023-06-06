@@ -103,17 +103,19 @@ app.use('/password',require('./router/forget_password_route'));
    Download.belongsTo(User)
 
 
-
    
-   // sequelize.sync().then(()=>{
-   //  app.listen(3000)
-   // }).catch((err)=>{
-   //    console.log(err)
+   sequelize.sync().then(()=>{
+    app.listen(3000)
+   }).catch((err)=>{
+      console.log(err)
       
-   // })
-   app.listen(3000,()=>{
-      console.log('app running on 3000')
    })
+  //  app.listen(3000,()=>{
+  //     console.log('app running on 3000')
+  //  })
 
 
 
+
+
+  

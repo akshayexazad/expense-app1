@@ -1,8 +1,11 @@
-const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require('uuid')
 const Sib = require('sib-api-v3-sdk')
 const bcrypt = require('bcryptjs');
 
+require('dotenv').config()
+
 const User = require('../model/usertable');
+
 const Forgotpassword = require('../model/forgotpassword');
 
 // send mail to user
@@ -14,16 +17,17 @@ const forgotpassword = async (req, res) => {
         const { email } = req.body;
         const user = await User.findOne({ where: { email } });
 
-        if (user.length === 0) {
+        // console.log(user)
+
+        if (user === null) {
             res.status(404).json({
                 status: "fail",
                 message:
                     "User with this mail Id no longer exist please use the correct mail id you had provided",
             });
         }
-        if (user.length !== 0) {
+        if (user!== null) {
             const id = uuidv4();
-            console.log(user.dataValues.id)
 
             await Forgotpassword.create({
                 id,
@@ -31,24 +35,23 @@ const forgotpassword = async (req, res) => {
                 isActive: true,
             });
 
-
             const client = Sib.ApiClient.instance;
             const apiKey = client.authentications["api-key"];
             apiKey.apiKey = process.env.MAIL_API_KEY;
 
             const tranEmailApi = new Sib.TransactionalEmailsApi();
 
+
             const sender = {
                 email: "expensetracker@gmail.com",
                 name: "Akshay",
             };
-
+        
             const receivers = [
                 {
                     email: email,
                 },
             ];
-            console.log()
 
             tranEmailApi
                 .sendTransacEmail({
@@ -67,7 +70,7 @@ const forgotpassword = async (req, res) => {
                     });
                 })
                 .catch((err) => {
-                    throw new Error(err);
+                    console.log(err)
                 });
         }
     } catch (err) {
@@ -91,10 +94,11 @@ const resetpassword = (req, res) => {
             forgotpasswordrequest.update({ active: false });
             res.status(200).send(`<html>
             <body>
+            <div><h1>EXPENSE TRACKER</h1></div><hr>
                 <div class="container">
                   <form  class="form-control form-control-sm">
-                    <label for="password" class="form-label">NewPassword:</label>
-                    <input type="password" id="password" class="form-control" required />
+                    <label for="password" class="form-label">NewPassword:</label><br><br>
+                    <input type="password" id="password" class="form-control" required /><br><br>
                     <button class="btn">Reset Password</button>
                   </form>
                 </div>
@@ -118,7 +122,7 @@ const resetpassword = (req, res) => {
                         console.log('password hai')
                    const response =   await axios.post("http://52.66.204.112:3000/password/updatepassword/${id}",newpassword);
                        alert(response.data.message);
-                      window.location.replace("https://google.com");
+                      window.location.replace("http://52.66.204.112:3000/signin.html");
                     }
                 
                   }catch(err){
@@ -159,7 +163,7 @@ const updatepassword = async (req, res) => {
                 else {
                     user.password = hash;
                     await user.save();
-                    res.status(201).json({ message: 'Successfuly update the new password' })
+                    res.status(201).json({ message: 'Successfully update the new Password' })
                 }
             })
         }

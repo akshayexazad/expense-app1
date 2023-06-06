@@ -5,7 +5,8 @@ async function forgot_password(event){
         email
     }
     axios.post('http://52.66.204.112:3000/password/forgotpassword',obj).then((res)=>{
-        console.log(res)
+        const message = document.getElementById('success_forgot_msg');
+        message.innerHTML = res.data.message;
     }).catch((err)=>{
         console.log(err)
     })
